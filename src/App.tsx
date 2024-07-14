@@ -3,12 +3,34 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
+import {
+  useBackButton,
+   useViewport,
+ } from '@telegram-apps/sdk-react';
+import { useEffect } from 'react';
 
+// BackButton initializes synchronously. So, bb will be 
+// the BackButton instance.
+const bb = useBackButton();
+
+// Viewport is being initialized asynchronously, so signal may return undefined.
+// After some time it will receive a valid value.
+const vp = useViewport();
+
+useEffect(() => {
+  console.log(vp); // will be undefined and then Viewport instance.
+}, [vp]);
+
+  
 const { initDataRaw, initData } = retrieveLaunchParams();
 function App() {
   const [count, setCount] = useState(0)
-  const id = initData.user.id
-  const user = initData.user.username
+  const id = initData?.user?.id
+  const user = initData?.user?.username
+
+
+   
+  
   return (
     <>
       <div>
@@ -31,8 +53,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-       <p>user id {id}</p>
-       <p>user id {user}</p>
+      <p>user id {id}</p>
+      <p>user id {user}</p>
     </>
   )
 }
