@@ -4,19 +4,13 @@ import Tasks from "./components/frontend/Tasks";
 import Withdrawal from "./components/frontend/Withdrawal";
 import Meme from "./components/frontend/Meme";
 import { Page, Navbar, Block } from 'konsta/react';
-import UserProfile from "./components/frontend/UserProfile";
-// import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
-// import { setLoading } from "@/redux/feature/loadingReducer";
-// import { retrieveLaunchParams, LaunchParams } from '@telegram-apps/sdk'; 
-// import checkUserRegistration from "@/utils/helper/checkUserRegistration";
-// import LaunchParams from "./components/UrRLSearchParams";
+ 
   
 export default function Home() {
    const launchParams = retrieveLaunchParams();
 
   const [activeView, setActiveView] = useState('meme');
-  // const { isLoading } = useAppSelector(state => state.loading);
-  const telegramId = launchParams.initData?.user?.id;
+   const telegramId = launchParams.initData?.user?.id;
   const userName = launchParams.initData?.user?.username;
   const firstName = launchParams.initData?.user?.firstName;
   const lastName = launchParams.initData?.user?.lastName;
@@ -37,10 +31,8 @@ export default function Home() {
   return (
     <Page className="w-full bg-gray-900 text-white h-screen">
       <Navbar className="px-5 mb-6">
-        <div>
-        {  telegramId && <UserProfile user={userName} />}
-
-        </div>
+        
+      <h1>user name :{userName}</h1>
       </Navbar>
       <Block className="mb-6">
         {activeView === 'meme' && <Meme />}
