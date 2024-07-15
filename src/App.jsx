@@ -3,7 +3,8 @@ import {   useState } from "react";
 import Tasks from "./components/frontend/Tasks";
 import Withdrawal from "./components/frontend/Withdrawal";
 import Meme from "./components/frontend/Meme";
-  
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
+
   
 export default function Home() {
    const launchParams = retrieveLaunchParams();
