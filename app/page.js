@@ -1,3 +1,4 @@
+'use client'
 import { SDKProvider } from '@telegram-apps/sdk-react';
 import {
  
