@@ -4,14 +4,11 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 import {
-  useBackButton,
-   useViewport,
- } from '@telegram-apps/sdk-react';
+  useViewport,
+} from '@telegram-apps/sdk-react';
 import { useEffect } from 'react';
 
-// BackButton initializes synchronously. So, bb will be 
-// the BackButton instance.
-const bb = useBackButton();
+
 
 // Viewport is being initialized asynchronously, so signal may return undefined.
 // After some time it will receive a valid value.
@@ -21,16 +18,16 @@ useEffect(() => {
   console.log(vp); // will be undefined and then Viewport instance.
 }, [vp]);
 
-  
-const { initDataRaw, initData } = retrieveLaunchParams();
+
+const {  initData } = retrieveLaunchParams();
 function App() {
   const [count, setCount] = useState(0)
   const id = initData?.user?.id
   const user = initData?.user?.username
 
 
-   
-  
+
+
   return (
     <>
       <div>
@@ -46,12 +43,10 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React  
+        Click on the Vite and React
       </p>
       <p>user id {id}</p>
       <p>user id {user}</p>
