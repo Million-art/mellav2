@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CompletedTasks from './CompletedTasks';
-import NewTasks from './NewTasks';
-import {Page} from 'konsta/react';
+ import {Page} from 'konsta/react';
 
 const Tasks = () => {
   const [activeTab, setActiveTab] = useState('newTasks');
@@ -38,8 +37,8 @@ const Tasks = () => {
         {activeTab === 'completedTasks' ? (
           <CompletedTasks />
         ) : (
-          <NewTasks />
-        )}
+ 'new task text not component'
+         )}
       </div>
     </Page>
   );
