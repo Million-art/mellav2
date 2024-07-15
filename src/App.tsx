@@ -17,8 +17,15 @@ startNgrok();
 const App = () => {
   const launchParams = retrieveLaunchParams();
   const fristname =launchParams.initData?.user?.firstName
+  const lastname =launchParams.initData?.user?.lastName
   return (
-    <div>App{fristname}</div>
+    <div>
+      App{fristname}
+    <p>
+      App{lastname}
+    
+    </p>
+    </div>
   )
 }
 
