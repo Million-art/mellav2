@@ -1,6 +1,5 @@
  
 import './App.css'
-import React from 'react'
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 import ngrok from 'ngrok';
 
