@@ -1,30 +1,23 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import LaunchParams from "@/app/components/UrRLSearchParams";
- 
+
 const initialState = {
   userName: '',
   telegramId: 0,
   firstName: '',
   lastName: '',
   referredBy: null,
-  balance: 0
+  balance: 0,
 };
 
 export const createUser = createAsyncThunk(
-  'users/createUser',
+  'user/createUser',
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      const launchParam = LaunchParams();
-      const telegramId = launchParam.initData?.user?.id;
-      const userName = launchParam.initData?.user?.username;
-      const firstName = launchParam.initData?.user?.firstName;
-      const lastName = launchParam.initData?.user?.lastName;
- 
       const user = {
-        userName: userName || '',
-        telegramId: telegramId || 0,
-        firstName: firstName || '',
-        lastName: lastName || '',
+        userName,
+        telegramId,
+        firstName,
+        lastName,
         referredBy: null,
         balance: 0,
       };
@@ -39,7 +32,7 @@ export const createUser = createAsyncThunk(
 
       if (response.ok) {
         const newUser = await response.json();
-        dispatch(addUser(newUser));
+        dispatch(addUser(newUser)); // Dispatch addUser action to update Redux state
         return newUser;
       } else {
         return rejectWithValue('Failed to create user');
@@ -54,11 +47,19 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    addUser: (state, action ) => {
-      return action.payload;
+    addUser: (state, action) => {
+      return action.payload; // Update state with the newly created user
     },
   },
-
+  extraReducers: (builder) => {
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      state.userName = action.payload.userName; 
+      state.telegramId = action.payload.telegramId;
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.balance = action.payload.balance;
+    });
+  },
 });
 
 export const { addUser } = userSlice.actions;
