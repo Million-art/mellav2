@@ -56,8 +56,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>{user.firstName}</h1>
-      {user && <UserDashboard user={user} />}
-    </div>
+      <h1> hey</h1>
+     </div>
   );
 }
