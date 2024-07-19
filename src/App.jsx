@@ -36,11 +36,11 @@ export default function Home() {
           balance: 0
         };
         await registerUser(newUserData);
-        localStorage.setItem('user', JSON.stringify(newUserData));
+        // localStorage.setItem('user', JSON.stringify(newUserData));
         setUser(newUserData);
       } else {
         console.log('User already registered:', userData);
-        localStorage.setItem('user', JSON.stringify(userData));
+        // localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
       }
     } catch (error) {
