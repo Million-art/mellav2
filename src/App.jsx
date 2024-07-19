@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import LaunchParams from "./Url";
+// import LaunchParams from "./Url";
 import registerUser from '../utils/registerUser';
 import UserDashboard from "./UserDashboard";
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
-const launchParam = LaunchParams();
+
+const launchParam = retrieveLaunchParams();
 const telegramId = launchParam.initData?.user?.id || 0;
 const userName = launchParam.initData?.user?.username || '';
 const firstName = launchParam.initData?.user?.firstName || '';
@@ -14,9 +16,13 @@ export default function Home() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    
+    const isUserAvailableOnLocalStorage = localStorage.getItem('user');
+    if (isUserAvailableOnLocalStorage) {
+      const storedUser = JSON.parse(isUserAvailableOnLocalStorage);
+      setUser(storedUser);
+    } else {
       checkUserRegistration();
-   
+    }
   }, [telegramId]);
 
   const checkUserRegistration = async () => {
@@ -36,11 +42,11 @@ export default function Home() {
           balance: 0
         };
         await registerUser(newUserData);
-        // localStorage.setItem('user', JSON.stringify(newUserData));
+        localStorage.setItem('user', JSON.stringify(newUserData));
         setUser(newUserData);
       } else {
         console.log('User already registered:', userData);
-        // localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
       }
     } catch (error) {
