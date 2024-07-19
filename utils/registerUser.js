@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const registerUser = async (user) => {
-  console.log('Registering user:');  
+  console.log('Registering user:');
   try {
     const response = await axios.post('http://localhost:3001/users', user);
 
