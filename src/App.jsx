@@ -82,7 +82,7 @@ export default function Home() {
       <Navbar className='px-5'>
         <div className='flex flex-row w-full'>
           <span className='w-1/2 flex flex-row gap-2 items-center'>
-            {user && (
+            {user[0] && (
               <>
                 <FaUserCircle size={32} />
                 {user[0].userName}
