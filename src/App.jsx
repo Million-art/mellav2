@@ -80,14 +80,14 @@ export default function Home() {
   return (
     <App safeAreas className="w-full bg-slate-900 text-white h-screen">
       <Navbar className='px-5'>
-        <div className='flex flex-row w-full'>user
+        <div className='flex flex-row w-full'> 
           <span className='w-1/2 flex flex-row gap-2 items-center'>
-            {user && (
-              <div>
-                <FaUserCircle size={32} />
-                {user[0].userName}
-              </div>
-            )}
+          {user && (
+  <div>
+    <FaUserCircle size={32} />
+    {user[0].userName || user.name || 'No username'}
+  </div>
+)}
           </span>
           <span className='w-1/2 flex justify-end items-center'>
             {user && `Balance: ${user[0].balance}`}
