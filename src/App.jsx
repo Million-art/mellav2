@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-// import LaunchParams from "./Url";
+//  import LaunchParams from "./Url";
 import registerUser from '../utils/registerUser';
 import { App, Block, Button, Navbar } from 'konsta/react';
 import Tasks from "./components/frontend/Tasks";
@@ -80,13 +80,13 @@ export default function Home() {
   return (
     <App safeAreas className="w-full bg-slate-900 text-white h-screen">
       <Navbar className='px-5'>
-        <div className='flex flex-row w-full'>
+        <div className='flex flex-row w-full'>user
           <span className='w-1/2 flex flex-row gap-2 items-center'>
-            {user[0] && (
-              <>
+            {user && (
+              <div>
                 <FaUserCircle size={32} />
                 {user[0].userName}
-              </>
+              </div>
             )}
           </span>
           <span className='w-1/2 flex justify-end items-center'>
