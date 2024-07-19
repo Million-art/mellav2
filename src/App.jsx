@@ -3,8 +3,10 @@ import axios from 'axios';
 import LaunchParams from "./Url";
 import registerUser from '../utils/registerUser';
 import UserDashboard from "./UserDashboard";
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
-const launchParam = LaunchParams();
+ 
+const launchParam = retrieveLaunchParams();
 const telegramId = launchParam.initData?.user?.id || 0;
 const userName = launchParam.initData?.user?.username || '';
 const firstName = launchParam.initData?.user?.firstName || '';
