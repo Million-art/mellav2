@@ -3,7 +3,7 @@ import axios from 'axios';
 const registerUser = async (user) => {
   console.log('Registering user:');
   try {
-    const response = await axios.post('http://localhost:3001/users', user);
+    const response = await axios.post('https://mella.dirtechsolution.com/users', user);
 
     if (response.status === 201) {
       // Registration successful

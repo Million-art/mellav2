@@ -9,7 +9,7 @@ import Meme from "./components/frontend/Meme";
 import { FaUserCircle } from 'react-icons/fa';
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
-  
+
 const launchParam = retrieveLaunchParams();
 const telegramId = launchParam.initData?.user?.id || 0;
 const userName = launchParam.initData?.user?.username || '';
@@ -31,7 +31,7 @@ export default function Home() {
 
   const checkUserRegistration = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/users/${telegramId}`);
+      const response = await axios.get(`https://mella.dirtechsolution.com/users/${telegramId}`);
       const userData = response.data;
       console.log('Response data:', userData);
 
@@ -80,14 +80,14 @@ export default function Home() {
   return (
     <App safeAreas className="w-full bg-slate-900 text-white h-screen">
       <Navbar className='px-5'>
-        <div className='flex flex-row w-full'> 
+        <div className='flex flex-row w-full'>
           <span className='w-1/2 flex flex-row gap-2 items-center'>
-          {user && (
-  <div>
-    <FaUserCircle size={32} />
-    {user[0].userName || user.name || 'No username'}
-  </div>
-)}
+            {user && (
+              <div>
+                <FaUserCircle size={32} />
+                {user[0].userName}
+              </div>
+            )}
           </span>
           <span className='w-1/2 flex justify-end items-center'>
             {user && `Balance: ${user[0].balance}`}
