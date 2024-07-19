@@ -3,10 +3,8 @@ import axios from 'axios';
 import LaunchParams from "./Url";
 import registerUser from '../utils/registerUser';
 import UserDashboard from "./UserDashboard";
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
- 
-const launchParam = retrieveLaunchParams();
+const launchParam = LaunchParams();
 const telegramId = launchParam.initData?.user?.id || 0;
 const userName = launchParam.initData?.user?.username || '';
 const firstName = launchParam.initData?.user?.firstName || '';
@@ -16,13 +14,9 @@ export default function Home() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const isUserAvailableOnLocalStorage = localStorage.getItem('user');
-    if (isUserAvailableOnLocalStorage) {
-      const storedUser = JSON.parse(isUserAvailableOnLocalStorage);
-      setUser(storedUser);
-    } else {
+    
       checkUserRegistration();
-    }
+   
   }, [telegramId]);
 
   const checkUserRegistration = async () => {
